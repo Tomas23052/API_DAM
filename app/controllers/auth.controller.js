@@ -71,7 +71,7 @@ exports.signup = (req, res) => {
 exports.passwordChange = async(req,res) => {
   try{
     const update = await User.findByIdAndUpdate(req.params.id, {
-      password: req.body.password
+      password: bcrypt.hashSync(req.body.password, 8)
     },
     {new:true}
     )
