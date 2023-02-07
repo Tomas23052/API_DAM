@@ -76,7 +76,7 @@ exports.passwordChange = async(req,res) => {
     {new:true}
     )
     res.send(update)
-  }catch{
+  }catch(error){
     res.status(500).send("ID não encontrado")
   }
 };

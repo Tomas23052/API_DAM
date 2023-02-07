@@ -40,8 +40,6 @@ exports.fetchOne = async(req,res) => {
 exports.UpdateOne = async (req, res) =>{
 
 
-  
-
   try{
     const update = await QRCode.findByIdAndUpdate(req.params.id, {
      messageQR: req.body.messageQR   
