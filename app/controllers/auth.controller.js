@@ -68,6 +68,19 @@ exports.signup = (req, res) => {
   });
 };
 
+exports.passwordChange = async(req,res) => {
+  try{
+    const update = await User.findByIdAndUpdate(req.params.id, {
+      password: req.body.password
+    },
+    {new:true}
+    )
+    res.send(update)
+  }catch{
+    res.status(500).send("ID não encontrado")
+  }
+};
+
 exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
@@ -112,7 +125,7 @@ exports.signin = (req, res) => {
         message: "Login efetuado com sucesso!",
         username: user.username,
         email: user.email,
-        roles: authorities,
+        password: user.password,
         accessToken: token
       });
     });
